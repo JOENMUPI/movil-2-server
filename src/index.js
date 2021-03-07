@@ -26,6 +26,10 @@ app.use(cors());
 
 // Routes
 app.use(require('./routes/user'));
+app.use(require('./routes/archive'));
+app.use(require('./routes/list'));
+app.use(require('./routes/step'));
+app.use(require('./routes/task'));
 
 
 // Server Listen

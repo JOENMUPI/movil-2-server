@@ -69,7 +69,7 @@ const login = async (req, res) => {
     }
 }
 
-const getUser = async (req, res) => {
+const getUser = async (req, res) => { 
     const data = await pool.query(dbQueriesUser.getAllUsers);
     
     if (data) {
@@ -83,8 +83,8 @@ const getUser = async (req, res) => {
 }
 
 const getUserById = async (req, res) => { 
-    const { id } = req.params;
-    const data = await pool.query(dbQueriesUser.getUserById, [ id ]);
+    const { userId } = req.params;
+    const data = await pool.query(dbQueriesUser.getUserById, [ userId ]);
     
     if(data) {
         (data.rowCount > 0) 
@@ -138,7 +138,8 @@ const createUsers = (req, res) => {
 }
 
 const updateUserById = (req, res) => {
-    const { userId, name, email, age, gender } = req.body;
+    const { name, email, age, gender } = req.body;
+    const { userId } = req.params;
     const errors = [];
 
     if(!field.checkFields([ name, email, age, gender ])) {
@@ -173,7 +174,8 @@ const updateUserById = (req, res) => {
 }
 
 const updatePassById = async (req, res) => { 
-    const { userId, password, confirmPassword, oldPassword } = req.body;
+    const { password, confirmPassword, oldPassword } = req.body;
+    const { userId } = req.params;
     const errors = [];
     
     if(!field.checkFields([ password, confirmPassword, oldPassword, userId ])) { 
@@ -202,7 +204,7 @@ const updatePassById = async (req, res) => {
                             res.json(newReponse(err, 'Error', { }));
              
                         } else {
-                            const data = await pool.query(dbQueriesUser.updatePassById, [ hash, id ]);
+                            const data = await pool.query(dbQueriesUser.updatePassById, [ hash, userId ]);
                             
                             (data) 
                             ? res.json(newReponse('Pass updated', 'Success', { }))
@@ -222,8 +224,8 @@ const updatePassById = async (req, res) => {
 }
 
 const deleteUserById = async (req, res) => {
-    const { id } = req.params;
-    const data = await pool.query(dbQueriesUser.deleteUserById, [ id ]);
+    const { userId } = req.params;
+    const data = await pool.query(dbQueriesUser.deleteUserById, [ userId ]);
     
     (data)
     ? res.json(newReponse('User deleted successfully', 'Success', { }))

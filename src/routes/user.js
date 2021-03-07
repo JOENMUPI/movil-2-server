@@ -7,7 +7,7 @@ const endPoint = '/user';
 
 // Get
 router.get(endPoint, user.getUser);
-router.get(`${ endPoint }/:id`, user.getUserById);
+router.get(`${ endPoint }/:userId`, user.getUserById);
 
 // Post
 router.post(`${ endPoint }/singup`, user.createUsers);
@@ -15,12 +15,12 @@ router.post(`${ endPoint }/singin`, user.login);
 
 
 // Put
-router.put(endPoint, user.updateUserById);
-router.put(`${ endPoint }/pass`, user.updatePassById);
+router.put(`${ endPoint }/:userId`, user.updateUserById);
+router.put(`${ endPoint }/pass/:userId`, user.updatePassById);
 
 
 // Delete
-router.delete(`${ endPoint }/:id`, user.deleteUserById);
+router.delete(`${ endPoint }/:userId`, user.deleteUserById);
 
 
 // Export

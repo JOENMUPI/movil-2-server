@@ -8,6 +8,7 @@ module.exports = {
     // Select
     getAllSteps: `SELECT * FROM ${ table }`,
     getStepById: `SELECT * FROM ${ table } WHERE step_ide = $1`,
+    getStepByTaskId: `SELECT * FROM ${ table } WHERE task_ide = $1`,
     getStepByDescription: `SELECT * FROM ${ table } WHERE step_des = $1`,
     
     
