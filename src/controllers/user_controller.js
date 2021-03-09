@@ -21,9 +21,7 @@ const dataToUser = (rows) => {
         users.push({  
             name: element.user_nam,
             email: element.user_ema,
-            age: element.user_age,
-            id: element.user_ide,
-            gender: element.gender_des,
+            id: element.user_ide
         });
     });
 
@@ -49,7 +47,7 @@ const checkEmail = async (email, callBack) => {
 
 // Logic
 const login = async (req, res) => { 
-    const { email, password } = req.body; c
+    const { email, password } = req.body; 
     const data = await pool.query(dbQueriesUser.getUserByEmail, [ email ]);
     
     if(data) { 
@@ -96,19 +94,19 @@ const getUserById = async (req, res) => {
     }
 }
 
-const createUsers = (req, res) => {  
-    const { name, password, gender, age, confirmPassword, email } = req.body;
-    const errors = [];
+const createUsers = (req, res) => {   
+    const { name, password, confirmPassword, email } = req.body;
+    const errors = []; 
     
-    if(!field.checkFields([ age, gender, name, password, confirmPassword, email ])) {
+    if(!field.checkFields([ name, password, confirmPassword, email ])) {
         errors.push({ text: 'Please fill in all the spaces' });
     }
 
-    if(!passwordUtil.checkPass(password, confirmPassword)) { 
+    if(!passwordUtil.checkPass(password, confirmPassword)) {  console.log('aqui deberia quedar');
         errors.push({ text: 'passwords must be uppercase, lowercase, special characters, have more than 8 digits and match each other'});
     } 
     
-    if(errors.length > 0) {
+    if(errors.length > 0) { console.log('aqui deberia salir');
         res.json(newReponse('Errors detected', 'Fail', { errors }));
     
     } else { 
@@ -125,7 +123,7 @@ const createUsers = (req, res) => {
                         res.json(newReponse(err, 'Error', { }));
                         
                     } else { 
-                        const data = await pool.query(dbQueriesUser.createUsers, [ name, email, hash, age, gender ]);
+                        const data = await pool.query(dbQueriesUser.createUsers, [ name, email, hash ]);
             
                         (data)
                         ? res.json(newReponse('User created', 'Success', { id: data.rows[0].user_ide }))
@@ -138,11 +136,11 @@ const createUsers = (req, res) => {
 }
 
 const updateUserById = (req, res) => {
-    const { name, email, age, gender } = req.body;
+    const { name, email } = req.body;
     const { userId } = req.params;
     const errors = [];
 
-    if(!field.checkFields([ name, email, age, gender ])) {
+    if(!field.checkFields([ name, email ])) {
         errors.push({ text: 'Please fill in all the spaces' });
     } 
     
@@ -162,7 +160,7 @@ const updateUserById = (req, res) => {
                     res.json(newReponse(`Email ${ email } already use`, 'Error', { }));
                     
                 } else {   
-                    const data = await pool.query(dbQueriesUser.updateUserById, [ name, email, age, gender, userId ]);
+                    const data = await pool.query(dbQueriesUser.updateUserById, [ name, email, userId ]);
                 
                     (data)
                     ? res.json(newReponse('User updated', 'Success', { }))

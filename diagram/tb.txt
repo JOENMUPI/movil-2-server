@@ -1,24 +1,11 @@
 
-CREATE SEQUENCE public.gender_gender_ide_seq_1;
-
-CREATE TABLE public.gender (
-                gender_ide INTEGER NOT NULL DEFAULT nextval('public.gender_gender_ide_seq_1'),
-                gender_des VARCHAR NOT NULL,
-                CONSTRAINT gender_pk PRIMARY KEY (gender_ide)
-);
-
-
-ALTER SEQUENCE public.gender_gender_ide_seq_1 OWNED BY public.gender.gender_ide;
-
 CREATE SEQUENCE public.user_1_user_ide_seq;
 
 CREATE TABLE public.user_1 (
                 user_ide INTEGER NOT NULL DEFAULT nextval('public.user_1_user_ide_seq'),
                 user_nam VARCHAR NOT NULL,
                 user_pas VARCHAR NOT NULL,
-                user_age INTEGER NOT NULL,
                 user_ema VARCHAR NOT NULL,
-                gender_ide INTEGER NOT NULL,
                 CONSTRAINT user_1_pk PRIMARY KEY (user_ide)
 );
 
@@ -82,12 +69,6 @@ CREATE TABLE public.step (
 
 ALTER SEQUENCE public.step_step_ide_seq OWNED BY public.step.step_ide;
 
-ALTER TABLE public.user_1 ADD CONSTRAINT gender_user_1_fk
-FOREIGN KEY (gender_ide)
-REFERENCES public.gender (gender_ide)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
 
 ALTER TABLE public.list ADD CONSTRAINT user_1_list_fk
 FOREIGN KEY (user_ide)
