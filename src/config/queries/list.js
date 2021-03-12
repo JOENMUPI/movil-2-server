@@ -13,7 +13,9 @@ module.exports = {
     
     
     // Update
-    updateTittleListById: `UPDATE ${ table } SET list_des = $1 WHERE list_ide = $2`,
+
+    updateListById: `UPDATE ${ table } SET list_tit = $1, list_img = $2 WHERE list_ide = $3`,
+    updateTittleListById: `UPDATE ${ table } SET list_tit = $1 WHERE list_ide = $2`,
     updateImgListById: `UPDATE ${ table } SET list_img = $1 WHERE list_ide = $2`,
 
 

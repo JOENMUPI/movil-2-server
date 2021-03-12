@@ -3,8 +3,8 @@ const table = 'task';
 module.exports = {
     // Insert
     createTask: `INSERT INTO ${ table } 
-    (task_tit, task_des, task_pin, task_che, task_hou_exp, task_dat_exp, task_dat_cre, task_pos, list_ide) 
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING task_ide`,
+    (task_tit, task_pin, task_che, task_dat_cre, task_pos, list_ide) 
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING task_ide`,
     
     
     // Select

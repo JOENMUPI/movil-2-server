@@ -34,35 +34,55 @@ const getListByUserId = async (req, res) => {
     if(data) { 
         (data.rowCount > 0)
         ? res.json(newReponse('List found', 'Success', dataToList(data.rows)))
-        : res.json(newReponse('User without list', 'Success', { }));
+        : res.json(newReponse('User without list', 'Success', []));
     
     } else {
         res.json(newReponse('Error searhing list', 'Error', { }));
     }
 }
 
-const createList = async (req, res) => {
-    const { tittle, userId, background } = req.body;
+const createList = async (req, res) => { 
+    const { tittle, userId, background } = req.body; 
     const errors = [];
 
-    if(!field.checkFields([ tittle, userId, background ])) {
+    if(!field.checkFields([ tittle, userId ])) {
         errors.push({ text: 'Empty fields' });
     }
 
     if(errors.length > 0) {
-        res.json(newReponse('Errors detected', 'fail', { errors }));
+        res.json(newReponse('Errors detected', 'Fail', { errors }));
     
     } else { 
         const data = await pool.query(dbQueriesList.createList, [ tittle, background, userId ]);
                         
         (data)
-        ? res.json(newReponse('List created', 'Success', { }))
-        : res.json(newReponse('Error create lsit', 'Error', { }));
+        ? res.json(newReponse('List created', 'Success', { id: data.list_ide }))
+        : res.json(newReponse('Error create list', 'Error', { }));
+    }
+}
+
+const updateListById = async (req, res) => { 
+    const { tittle, background, id } = req.body;
+    const errors = [];
+
+    if(!field.checkFields([ tittle, background ])) {
+        errors.push({ text: 'Empty fields' });
+    }
+
+    if(errors.length > 0) {
+        res.json(newReponse('Errors detected', 'Fail', { errors }));
+    
+    } else { 
+        const data = await pool.query(dbQueriesList.updateListById, [ tittle, background, id ]);
+                        
+        (data)
+        ? res.json(newReponse('List updated', 'Success', { }))
+        : res.json(newReponse('Error update list', 'Error', { }));
     }
 
 }
 
-const deleteListById = async (req, res) => {
+const deleteListById = async (req, res) => { 
     const { listId } = req.params;
     const data = await pool.query(dbQueriesList.deleteListById, [ listId ]);
     
@@ -76,5 +96,6 @@ const deleteListById = async (req, res) => {
 module.exports = { 
     getListByUserId,
     createList,
+    updateListById,
     deleteListById
 }
