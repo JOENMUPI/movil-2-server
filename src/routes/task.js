@@ -13,10 +13,10 @@ router.get(`${ endPoint }/list/:listId`, task.getTaskByListId);
 router.post(endPoint, task.createTask);
 
 // Put
-
+router.put(`${ endPoint }/tittle`, task.updateTasTittlekById);
 
 // Delete
-router.post(`${ endPoint }/taskId`, task.deleteTaskById);
+router.delete(`${ endPoint }/:taskId`, task.deleteTaskById);
 
 // Export
 module.exports = router;

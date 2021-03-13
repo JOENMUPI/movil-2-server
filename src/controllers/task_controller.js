@@ -65,8 +65,28 @@ const createTask = async (req, res) => {
         const data = await pool.query(dbQueriesTask.createTask, [ tittle, false, false, new Date(),  position, listId ]);
                         
         (data)
-        ? res.json(newReponse('Task created', 'Success', { id: data.task_ide }))
+        ? res.json(newReponse('Task created', 'Success', { id: data.rows[0].task_ide }))
         : res.json(newReponse('Error create task', 'Error', { }));
+    }
+}
+
+const updateTasTittlekById = async (req, res) => { 
+    const { tittle, id } = req.body; 
+    const errors = [];
+
+    if(!field.checkFields([ tittle ])) {
+        errors.push({ text: 'Empty fields' });
+    }
+
+    if(errors.length > 0) {
+        res.json(newReponse('Errors detected', 'Fail', { errors }));
+    
+    } else { 
+        const data = await pool.query(dbQueriesTask.updateTaskTittleById, [ tittle, id ]);
+                        
+        (data)
+        ? res.json(newReponse('Task updated', 'Success', { }))
+        : res.json(newReponse('Error update task', 'Error', { }));
     }
 }
 
@@ -84,5 +104,6 @@ const deleteTaskById = async (req, res) => {
 module.exports = { 
     getTaskByListId,
     createTask,
+    updateTasTittlekById,
     deleteTaskById
 }

@@ -79,7 +79,6 @@ const updateListById = async (req, res) => {
         ? res.json(newReponse('List updated', 'Success', { }))
         : res.json(newReponse('Error update list', 'Error', { }));
     }
-
 }
 
 const deleteListById = async (req, res) => { 
