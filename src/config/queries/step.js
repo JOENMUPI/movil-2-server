@@ -2,7 +2,8 @@ const table = 'step';
 
 module.exports = {
     // Insert
-    createStep: `INSERT INTO ${ table } (step_des, step_che, task_ide) VALUES ($1, $2, $3)`,
+    createStep: `INSERT INTO ${ table } (step_des, step_che, task_ide) VALUES ($1, $2, $3) 
+    RETURNING step_ide`,
     
     
     // Select
@@ -13,6 +14,8 @@ module.exports = {
     
     
     // Update
+    updateStepDescriptionById: `UPDATE ${ table } SET step_des = $1 WHERE step_ide = $2`,
+    updateStepCheckById: `UPDATE ${ table } SET step_che = $1 WHERE step_ide = $2`,
     updateStepById: `UPDATE ${ table } SET step_des = $1, step_che = $2 WHERE step_ide = $3`,
     
 
