@@ -13,7 +13,7 @@ router.get(`${ endPoint }/list/:listId`, task.getTaskByListId);
 router.post(endPoint, task.createTask);
 
 // Put
-router.put(`${ endPoint }/tittle`, task.updateTasTittlekById);
+router.put(`${ endPoint }/field`, task.updateTaskFieldById);
 
 // Delete
 router.delete(`${ endPoint }/:taskId`, task.deleteTaskById);

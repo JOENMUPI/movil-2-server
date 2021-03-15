@@ -48,7 +48,7 @@
     <column id="COL11" populated="true" UUID="f83b5591-c74c-4628-adf3-f991a1a26cf0" autoIncrement="false" autoIncrementSequenceName="list_list_img_seq" defaultValue="" name="list_img" nullable="1" physicalName="list_img" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL12" populated="true" UUID="80994f15-3a85-42f9-8080-418ccb0a228a" autoIncrement="false" autoIncrementSequenceName="user_1_user_ide_seq" defaultValue="" name="user_ide" nullable="0" physicalName="user_ide" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL12" populated="true" UUID="80994f15-3a85-42f9-8080-418ccb0a228a" autoIncrement="false" autoIncrementSequenceName="user_1_user_ide_seq_1" defaultValue="" name="user_ide" nullable="0" physicalName="user_ide" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     </folder>
@@ -77,16 +77,16 @@
     <column id="COL19" populated="true" UUID="ea667133-310c-41bf-b728-f73e948de4f1" autoIncrement="false" autoIncrementSequenceName="task_task_des_seq" defaultValue="" name="task_des" nullable="1" physicalName="task_des" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL20" populated="true" UUID="6c0434b5-f916-4048-8240-01560c500fe3" autoIncrement="false" autoIncrementSequenceName="list_lis_ide_seq" defaultValue="" name="list_ide" nullable="0" physicalName="list_ide" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL20" populated="true" UUID="6c0434b5-f916-4048-8240-01560c500fe3" autoIncrement="false" autoIncrementSequenceName="list_lis_ide_seq_1" defaultValue="" name="list_ide" nullable="0" physicalName="list_ide" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL21" populated="true" UUID="9d37fa43-ee36-4769-8d67-0741f030e5c7" autoIncrement="false" autoIncrementSequenceName="task_task_dat_exp_seq" defaultValue="" name="task_dat_exp" nullable="1" physicalName="task_dat_exp" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL21" populated="true" UUID="9d37fa43-ee36-4769-8d67-0741f030e5c7" autoIncrement="false" autoIncrementSequenceName="task_task_dat_exp_seq" defaultValue="" name="task_dat_exp" nullable="1" physicalName="task_dat_exp" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
      <remarks></remarks>
     </column>
     <column id="COL22" populated="true" UUID="685586fb-6a4e-4a82-8f83-9a1d1ff74d36" autoIncrement="false" autoIncrementSequenceName="task_task_pin_seq" defaultValue="" name="task_pin" nullable="0" physicalName="task_pin" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="16" userDefinedTypeUUID="a26374aa-3026-4bb8-b564-eb2e186dfa5d" >
      <remarks></remarks>
     </column>
-    <column id="COL23" populated="true" UUID="c2611570-226e-4efd-8af8-659f8e30944d" autoIncrement="false" autoIncrementSequenceName="task_task_hou_exp_seq" defaultValue="" name="task_hou_exp" nullable="1" physicalName="task_hou_exp" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="92" userDefinedTypeUUID="10d6960f-169d-47c2-860a-37341342b1d5" >
+    <column id="COL23" populated="true" UUID="c2611570-226e-4efd-8af8-659f8e30944d" autoIncrement="false" autoIncrementSequenceName="task_task_hou_exp_seq" defaultValue="" name="task_hou_exp" nullable="1" physicalName="task_hou_exp" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
      <remarks></remarks>
     </column>
     <column id="COL24" populated="true" UUID="093a49b8-8d9c-4aed-8098-18a82a0255aa" autoIncrement="false" autoIncrementSequenceName="task_task_che_seq" defaultValue="" name="task_che" nullable="0" physicalName="task_che" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="16" userDefinedTypeUUID="a26374aa-3026-4bb8-b564-eb2e186dfa5d" >
@@ -115,7 +115,7 @@
     <column id="COL30" populated="true" UUID="af233247-e81c-4a5b-961f-18a4fb346dce" autoIncrement="false" autoIncrementSequenceName="step_step_des_seq" defaultValue="" name="step_des" nullable="0" physicalName="step_des" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL31" populated="true" UUID="457782aa-b344-4bbe-be96-19b5ae8961d7" autoIncrement="false" autoIncrementSequenceName="task_task_ide_seq" defaultValue="" name="task_ide" nullable="0" physicalName="task_ide" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL31" populated="true" UUID="457782aa-b344-4bbe-be96-19b5ae8961d7" autoIncrement="false" autoIncrementSequenceName="task_task_ide_seq_1" defaultValue="" name="task_ide" nullable="0" physicalName="task_ide" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL32" populated="true" UUID="e317e5c7-b147-4c88-bcfd-b3038a424f06" autoIncrement="false" autoIncrementSequenceName="step_step_che_seq" defaultValue="" name="step_che" nullable="0" physicalName="step_che" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="16" userDefinedTypeUUID="a26374aa-3026-4bb8-b564-eb2e186dfa5d" >
@@ -141,7 +141,7 @@
     <column id="COL37" populated="true" UUID="40b1c760-d1ee-4f1f-8e2d-cf05e0ded5a7" autoIncrement="false" autoIncrementSequenceName="archive_archive_jso_seq" defaultValue="" name="archive_jso" nullable="0" physicalName="archive_jso" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL38" populated="true" UUID="2087f387-3538-4e51-97d6-e99d3d48c6c9" autoIncrement="false" autoIncrementSequenceName="task_task_ide_seq" defaultValue="" name="task_ide" nullable="0" physicalName="task_ide" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL38" populated="true" UUID="2087f387-3538-4e51-97d6-e99d3d48c6c9" autoIncrement="false" autoIncrementSequenceName="task_task_ide_seq_2" defaultValue="" name="task_ide" nullable="0" physicalName="task_ide" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     </folder>
@@ -170,7 +170,7 @@
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="public"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema="public"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">

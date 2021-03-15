@@ -14,9 +14,9 @@ const newReponse = (message, typeResponse, body) => {
 }
 
 const dataToTask = (rows) => {
-    const archives = [];
+    const archives = []; 
         
-    rows.forEach(element => {
+    rows.forEach(element => { 
         archives.push({  
             id: element.task_ide,
             tittle: element.task_tit,
@@ -90,6 +90,48 @@ const updateTasTittlekById = async (req, res) => {
     }
 }
 
+const updateTaskFieldById = async (req, res) => {  
+    const { id, field, type } = req.body; 
+    const errors = [];
+
+    /*if(!field.checkFields([ id, field, type ])) {
+        errors.push({ text: 'Empty fields' });
+    }*/
+
+    if(errors.length > 0) {
+        res.json(newReponse('Errors detected', 'Fail', { errors }));
+    
+    } else { 
+        let data;
+ 
+        switch (type) {
+            case 'tittle':
+                data = await pool.query(dbQueriesTask.updateTaskTittleById, [ field, id ]);
+                break;
+
+            case 'note': 
+                data = await pool.query(dbQueriesTask.updateTaskNoteById, [ field, id ]);
+                break;
+
+            case 'date':
+                data = await pool.query(dbQueriesTask.updateTaskDateExpById, [ field, id ]); 
+                break;
+
+            case 'time':
+                data = await pool.query(dbQueriesTask.updateTaskHourExpById, [ field, id ]); 
+                break;
+
+            default:
+                res.json(newReponse('Type not found', 'Error', { }))
+                break;
+        }
+                        
+        (data)
+        ? res.json(newReponse('Field updated successfully', 'Success', { }))
+        : res.json(newReponse('Error update field', 'Error', { }));
+    }
+}
+
 const deleteTaskById = async (req, res) => {
     const { taskId } = req.params;
     const data = await pool.query(dbQueriesTask.deleteTaskById, [ taskId ]);
@@ -105,5 +147,6 @@ module.exports = {
     getTaskByListId,
     createTask,
     updateTasTittlekById,
+    updateTaskFieldById,
     deleteTaskById
 }

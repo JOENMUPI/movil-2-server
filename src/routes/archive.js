@@ -10,13 +10,14 @@ router.get(`${ endPoint }/task/:taskId`, archive.getArchivesByTaskId);
 
 
 // Post
+router.post(endPoint, archive.createArchive);
 
 
 // Put
 
 
 // Delete
-
+router.delete(`${ endPoint }/:archiveId`, archive.deleteArchiveById);
 
 // Export
 module.exports = router;
