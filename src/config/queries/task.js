@@ -14,13 +14,12 @@ module.exports = {
     
     
     // Update
-    updateTaskById: `UPDATE ${ table } SET 
-    task_tit = $1, task_des = $2, task_pin = $3, task_che = $4, task_hou_exp = $5,  task_dat_exp = $6, task_pos = $7 
-    WHERE task_ide = $8`,
     updateTaskTittleById: `UPDATE ${ table } SET task_tit = $1 WHERE task_ide = $2`,
     updateTaskNoteById: `UPDATE ${ table } SET task_des = $1 WHERE task_ide = $2`,
     updateTaskDateExpById: `UPDATE ${ table } SET task_dat_exp = $1 WHERE task_ide = $2`,
-    updateTaskHourExpById: `UPDATE ${ table } SET task_hou_exp = $1 WHERE task_ide = $2`,
+    updateTaskDateNotificationById: `UPDATE ${ table } SET task_dat_not = $1 WHERE task_ide = $2`,
+    updateTaskPriorityExpById: `UPDATE ${ table } SET task_pin = $1 WHERE task_ide = $2`,
+    updateTaskCheckExpById: `UPDATE ${ table } SET task_che = $1 WHERE task_ide = $2`,
 
     // Delete
     deleteTaskById: `DELETE FROM ${ table } WHERE task_ide = $1`

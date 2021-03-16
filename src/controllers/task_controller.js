@@ -22,13 +22,11 @@ const dataToTask = (rows) => {
             tittle: element.task_tit,
             dateCreate: element.task_dat_cre,
             dateExpiration: element.task_dat_exp,
-            hourExpiration: element.task_hou_exp,
+            dateNotification: element.task_dat_not,
             note: element.task_des,
             priority: element.task_pin,
             check: element.task_che,
             position: element.task_pos, 
-            steps: [],
-            archives: []
         });
     });
 
@@ -117,8 +115,16 @@ const updateTaskFieldById = async (req, res) => {
                 data = await pool.query(dbQueriesTask.updateTaskDateExpById, [ field, id ]); 
                 break;
 
-            case 'time':
-                data = await pool.query(dbQueriesTask.updateTaskHourExpById, [ field, id ]); 
+            case 'notification':
+                data = await pool.query(dbQueriesTask.updateTaskDateNotificationById, [ field, id ]); 
+                break;
+
+            case 'priority':
+                data = await pool.query(dbQueriesTask.updateTaskPriorityExpById, [ field, id ]); 
+                break;
+
+            case 'check':
+                data = await pool.query(dbQueriesTask.updateTaskCheckExpById, [ field, id ]); 
                 break;
 
             default:

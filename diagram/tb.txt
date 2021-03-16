@@ -35,7 +35,7 @@ CREATE TABLE public.task (
                 list_ide INTEGER NOT NULL,
                 task_dat_exp TIMESTAMP,
                 task_pin BOOLEAN NOT NULL,
-                task_hou_exp TIMESTAMP,
+                task_dat_not TIMESTAMP,
                 task_che BOOLEAN NOT NULL,
                 task_pos INTEGER NOT NULL,
                 CONSTRAINT task_pk PRIMARY KEY (task_ide)
