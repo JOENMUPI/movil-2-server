@@ -168,7 +168,7 @@ const createList = async (req, res) => {
         const data = await pool.query(dbQueriesList.createList, [ tittle, background, userId ]);
                         
         (data)
-        ? res.json(newReponse('List created', 'Success', { id: data.list_ide }))
+        ? res.json(newReponse('List created', 'Success', { id: data.rows[0].list_ide }))
         : res.json(newReponse('Error create list', 'Error', { }));
     }
 }
