@@ -35,7 +35,7 @@ const dataToTask = (rows) => {
 
 // Logic
 const getTaskByListId = async (req, res) => {
-    const { listId } = req.params;
+    const { listId } = req.params; 
     const data = await pool.query(dbQueriesTask.getTaskByListId, [ listId ]);
     
     if(data) { 
@@ -65,26 +65,6 @@ const createTask = async (req, res) => {
         (data)
         ? res.json(newReponse('Task created', 'Success', { id: data.rows[0].task_ide }))
         : res.json(newReponse('Error create task', 'Error', { }));
-    }
-}
-
-const updateTasTittlekById = async (req, res) => { 
-    const { tittle, id } = req.body; 
-    const errors = [];
-
-    if(!field.checkFields([ tittle ])) {
-        errors.push({ text: 'Empty fields' });
-    }
-
-    if(errors.length > 0) {
-        res.json(newReponse('Errors detected', 'Fail', { errors }));
-    
-    } else { 
-        const data = await pool.query(dbQueriesTask.updateTaskTittleById, [ tittle, id ]);
-                        
-        (data)
-        ? res.json(newReponse('Task updated', 'Success', { }))
-        : res.json(newReponse('Error update task', 'Error', { }));
     }
 }
 
@@ -119,11 +99,11 @@ const updateTaskFieldById = async (req, res) => {
                 data = await pool.query(dbQueriesTask.updateTaskDateNotificationById, [ field, id ]); 
                 break;
 
-            case 'priority':
+            case 'priority': 
                 data = await pool.query(dbQueriesTask.updateTaskPriorityExpById, [ field, id ]); 
                 break;
 
-            case 'check':
+            case 'check': 
                 data = await pool.query(dbQueriesTask.updateTaskCheckExpById, [ field, id ]); 
                 break;
 
@@ -152,7 +132,6 @@ const deleteTaskById = async (req, res) => {
 module.exports = { 
     getTaskByListId,
     createTask,
-    updateTasTittlekById,
     updateTaskFieldById,
     deleteTaskById
 }

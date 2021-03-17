@@ -6,7 +6,7 @@ const list = require('../controllers/list_controller');
 const endPoint = '/list';
 
 // Get
-router.get(`${ endPoint }/user/:userId`, list.getListByUserId);
+router.get(`${ endPoint }/user/:userId`, list.getMegaListByUserId);
 
 
 // Post

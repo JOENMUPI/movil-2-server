@@ -1,6 +1,9 @@
 const Pool = require('pg').Pool;
 const dbConfig = require('../config/db_config');
 const dbQueriesList = require('../config/queries/list');
+const dbQueriesTask = require('../config/queries/task');
+const dbQueriesArchive = require('../config/queries/archive');
+const dbQueriesStep = require('../config/queries/step');
 const field = require('../utilities/field');
 
 // Variables
@@ -12,7 +15,7 @@ const newReponse = (message, typeResponse, body) => {
     return {  message, typeResponse, body }
 }
 
-const dataToList = (rows) => {
+const dataToList2 = (rows) => {
     const archives = [];
         
     rows.forEach(element => {
@@ -26,14 +29,123 @@ const dataToList = (rows) => {
     return archives;
 }
 
+const dataToList = (list, tasks) => {
+    return {
+        id: list.list_ide,
+        tittle: list.list_tit,
+        background: list.list_img,
+        tasks
+    }
+}
+
+const dataToTask = (task, archives, steps) => {
+    return {
+        id: task.task_ide,
+        tittle: task.task_tit,
+        dateCreate: task.task_dat_cre,
+        dateExpiration: task.task_dat_exp,
+        dateNotification: task.task_dat_not,
+        note: task.task_des,
+        priority: task.task_pin,
+        check: task.task_che,
+        position: task.task_pos, 
+        listId: task.list_ide,
+        archives, 
+        steps
+    }
+}
+
+const dataToArchives = (rows) => {
+    const archives = [];
+        
+    rows.forEach(element => {
+        archives.push({  
+            id: element.archive_ide,
+            data: element.archive_jso
+        });
+    });
+
+    return archives;
+}
+
+const dataToSteps = (rows) => {
+    const steps = [];
+        
+    rows.forEach(element => {
+        steps.push({  
+            id: element.step_ide,
+            description: element.step_des,
+            check: element.step_che
+        });
+    });
+
+    return steps;
+}
+
+const getArchivesAndStepsWithTask = async(task) => { 
+    const archiveData = await pool.query(dbQueriesArchive.getArchiveByTaskId, [ task.id ]);
+    const stepData = await pool.query(dbQueriesStep.getStepByTaskId, [ task.id ]);
+    let aux = task;
+
+    if(archiveData.rowCount > 0) { 
+        aux = { ...aux, steps: dataToSteps(stepData.rows) }
+    } 
+    
+    if(stepData.rowCount > 0) { ;
+        aux = { ...aux, archives: dataToArchives(archiveData.rows) }
+    } 
+
+    return aux;
+}
+
+const getTasksWithList = async (list) => { 
+    const taskData = await pool.query(dbQueriesTask.getTaskByListId, [ list.id ]);
+    let tasks = [];
+
+    if(taskData.rowCount > 0) {
+        for(let i = 0; i< taskData.rowCount; i++) {
+            tasks.push(await getArchivesAndStepsWithTask(dataToTask(taskData.rows[i], [], [])));
+        }
+
+        return { ...list, tasks: tasks }
+
+    } else {
+        return list;
+    }
+}; 
+
 // Logic
+const getMegaListByUserId = async (req, res) => {
+    const { userId } = req.params; 
+    const data = await pool.query(dbQueriesList.getListByUserId, [ userId ]);
+    
+
+    if(!data) {
+        res.json(newReponse('Error searshing list', 'Error', { }));
+    
+    } else {
+        if(data.rowCount <= 0) {
+            res.json(newReponse('User without list', 'Success', []));
+
+        } else {
+            let resAux = [];
+
+            for(let i = 0; i < data.rowCount; i++) { 
+                resAux.push(await getTasksWithList(dataToList(data.rows[i], [])));
+            }
+    
+            res.json(newReponse('List found', 'Success', resAux));
+        }
+    }
+}
+
 const getListByUserId = async (req, res) => {
-    const { userId } = req.params;
+    const { userId } = req.params; 
     const data = await pool.query(dbQueriesList.getListByUserId, [ userId ]);
     
     if(data) { 
         (data.rowCount > 0)
-        ? res.json(newReponse('List found', 'Success', dataToList(data.rows)))
+        ? res.json(newReponse('List found', 'Success', dataToList2(data.rows)))
         : res.json(newReponse('User without list', 'Success', []));
     
     } else {
@@ -94,6 +206,7 @@ const deleteListById = async (req, res) => {
 // Export
 module.exports = { 
     getListByUserId,
+    getMegaListByUserId,
     createList,
     updateListById,
     deleteListById

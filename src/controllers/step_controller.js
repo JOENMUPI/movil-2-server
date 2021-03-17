@@ -56,7 +56,7 @@ const createStep = async (req, res) => {
         const data = await pool.query(dbQueriesStep.createStep, [ description, check, taskId ]);
                         
         (data)
-        ? res.json(newReponse('Step created successfully', 'Success', { id: data.step_ide }))
+        ? res.json(newReponse('Step created successfully', 'Success', { id: data.rows[0].step_ide }))
         : res.json(newReponse('Error create step', 'Error', { }));
     }
 }
